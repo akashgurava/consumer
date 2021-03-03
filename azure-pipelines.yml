@@ -1,7 +1,7 @@
 jobs:
   - template: default.yml@templates
  
- resources:
+resources:
    repositories:
      - repository: templates
        type: github
