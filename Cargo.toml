@@ -1,0 +1,40 @@
+[package]
+name    = "consumer"
+version = "0.1.0"
+authors = ["akash <akashgurava@outlook.com>"]
+edition = "2018"
+
+description = "A REST Client to consume APIs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+default = ["hyper-client"]
+# default = ["isahc-client"]
+# default = ["full"]
+
+hyper-client = ["hyper", "hyper-tls"]
+isahc-client = ["isahc"]
+full         = ["hyper-client", "isahc-client"]
+
+
+[dependencies]
+# Mandatory deps
+async-trait   = "0.1"
+http          = "0.2"
+url           = "2.2"
+tower-service = "0.3"
+thiserror     = "1"
+
+# Hyper client
+hyper     = { version = "0.14", features = ["client", "http1", "http2"], optional = true }
+hyper-tls = { version = "0.5", optional = true }
+
+#isahc
+isahc = { version = "1", optional = true }
+
+[dev-dependencies]
+tokio     = { version = "1.2", features = ["macros", "rt-multi-thread", "sync"] }
+criterion = { version = "0.3", features = ["async_tokio", "html_reports"] }
+futures   = "0.3"
+wiremock  = "0.5"
