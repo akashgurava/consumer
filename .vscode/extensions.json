@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "matklad.rust-analyzer",
+        "vadimcn.vscode-lldb",
+        "serayuzgur.crates",
+        "jedeop.crates-completer",
+        "tamasfe.even-better-toml"
+    ]
+}

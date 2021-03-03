@@ -1,0 +1,10 @@
+{
+    "evenBetterToml.formatter.alignEntries": true,
+    "rust-analyzer.assist.importMergeBehavior": "last",
+    "rust-analyzer.checkOnSave.command": "clippy",
+    "cSpell.words": [
+        "clippy",
+        "isahc",
+        "thiserror"
+    ]
+}
