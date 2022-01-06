@@ -11,3 +11,4 @@ mod isahc;
 pub use ::isahc::HttpClient as IsahcClient;
 
 pub use self::consumer::Consumer;
+pub use self::consumer::ConsumerTrait;

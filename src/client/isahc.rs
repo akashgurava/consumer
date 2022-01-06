@@ -5,10 +5,10 @@ use isahc::{AsyncBody as Body, HttpClient as IsahcClient};
 
 use crate::error::ConsumerError;
 
-use super::consumer::{Consumer, ConsumerT};
+use super::consumer::{Consumer, ConsumerTrait};
 
 #[async_trait]
-impl ConsumerT for IsahcClient {
+impl ConsumerTrait for IsahcClient {
     type Body = Body;
 
     fn empty_body(&self) -> Self::Body {
@@ -17,9 +17,7 @@ impl ConsumerT for IsahcClient {
 
     #[inline]
     async fn fetch(&self, request: Request<Body>) -> Result<Response<Body>, ConsumerError> {
-        self.send_async(request)
-            .await
-            .map_err(|_| ConsumerError::Unknown)
+        self.send_async(request).await.map_err(ConsumerError::from)
     }
 }
 

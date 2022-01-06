@@ -4,6 +4,7 @@
         "vadimcn.vscode-lldb",
         "serayuzgur.crates",
         "jedeop.crates-completer",
-        "tamasfe.even-better-toml"
+        "tamasfe.even-better-toml",
+        "editorconfig.editorconfig"
     ]
 }

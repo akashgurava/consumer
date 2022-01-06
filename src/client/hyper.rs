@@ -1,18 +1,18 @@
 use std::sync::Arc;
 
 use http::{Request, Response};
-use hyper::client::HttpConnector;
-use hyper::{Body, Client};
+use hyper::client::{Client, HttpConnector};
+use hyper::Body;
 use hyper_tls::HttpsConnector;
 
 use crate::error::ConsumerError;
 
-use super::consumer::{Consumer, ConsumerT};
+use super::consumer::{Consumer, ConsumerTrait};
 
 pub type HyperClient = Client<HttpsConnector<HttpConnector>>;
 
 #[async_trait]
-impl ConsumerT for HyperClient {
+impl ConsumerTrait for HyperClient {
     type Body = Body;
 
     fn empty_body(&self) -> Self::Body {
@@ -20,9 +20,7 @@ impl ConsumerT for HyperClient {
     }
 
     async fn fetch(&self, request: Request<Body>) -> Result<Response<Body>, ConsumerError> {
-        self.request(request)
-            .await
-            .map_err(|_| ConsumerError::Unknown)
+        self.request(request).await.map_err(ConsumerError::from)
     }
 }
 
